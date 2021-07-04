@@ -18,7 +18,7 @@ size_t Buffer::writeable_bytes() const {
     return buffer.size() - write_pos;
 }
 /* 返回缓冲区头部可利用的字节数 */
-size_t Buffer::prependable_bytes() const {
+size_t Buffer::front_bytes() const {
     return read_pos;
 }
 /* 返回指向第一个可读字符的指针 */
@@ -132,7 +132,7 @@ const char* Buffer::begin_ptr() const {
 
 /* 根据缓冲区中可用空间大小来调整或扩大缓冲区 */
 void Buffer::adjust_space(size_t len) {
-    if(writeable_bytes() + prependable_bytes() < len) {
+    if(writeable_bytes() + front_bytes() < len) {
         buffer.resize(write_ptr + len + 1);
     }
     else {
