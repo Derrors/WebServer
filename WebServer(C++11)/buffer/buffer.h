@@ -1,5 +1,5 @@
 /*
- * @Description  : 缓冲区定义
+ * @Description  : Buffer 定义
  * @Author       : Qinghe Li
  * @Create time  : 2021-07-04 20:19:35
  * @Last update  : 2021-07-04 20:21:53
@@ -25,7 +25,7 @@ public:
     size_t readable_bytes() const;              // 获取缓冲区当前可读的字节数，即已经写了多少
     size_t front_bytes() const;                 // 获取缓冲区前部可使用空间的大小
 
-    const char* peek() const;
+
     void ensure_writeable(size_t len);
 
     void retrieve(size_t len);
@@ -33,8 +33,9 @@ public:
     void retrieve_all();
     std::string retrieve_all_to_str();
 
-    const char* begin_write_const() const;
-    char* begin_write();
+    const char* read_ptr() const;
+    const char* write_ptr_const() const;
+    char* write_ptr();
 
     void append(const char* str, size_t len);
     void append(const void* data, size_t len);
@@ -43,6 +44,7 @@ public:
 
     ssize_t read_fd(int fd, int* Errno);
     ssize_t write_fd(int fd, int* Errno);
+    void move_write_ptr(size_t len);
 
 private:
     char* begin_ptr();
