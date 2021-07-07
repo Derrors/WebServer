@@ -1,6 +1,9 @@
-//
-// Created by Derrors on 2021/7/5.
-//
+/*
+ * @Description  : 定时器
+ * @Author       : Qinghe Li
+ * @Create time  : 2021-07-04 20:19:35
+ * @Last update  : 2021-07-07 08:58:58
+ */
 
 #include "timer.h"
 
@@ -62,18 +65,6 @@ void Timers::add(int id, int timeout, const TimeoutCallBack& cb) {
             sift_up(i);
         }
     }
-}
-
-/* 第 id 个定时器的事件发生，触发回调函数并删除对应的定时器 */
-void Timers::run(int id) {
-    if(timer_heap.empty() || timer_map.count(id) == 0) {
-        return;
-    }
-    /* 删除指定 id 结点，并触发回调函数 */
-    size_t i = timer_map[id];
-    TimerNode node = timer_heap[i];
-    node.cb();
-    del(i);
 }
 
 /* 删除指定位置的定时器 */

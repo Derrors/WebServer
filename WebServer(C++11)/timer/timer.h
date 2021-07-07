@@ -1,6 +1,9 @@
-//
-// Created by Derrors on 2021/7/5.
-//
+/*
+ * @Description  : 定时器
+ * @Author       : Qinghe Li
+ * @Create time  : 2021-07-04 20:19:35
+ * @Last update  : 2021-07-07 09:00:32
+ */
 
 #ifndef TIMER_H
 #define TIMER_H
@@ -38,7 +41,6 @@ public:
 
     void adjust(int id, int new_expires);
     void add(int id, int timeout, const TimeoutCallBack& cb);
-    void run(int id);
     void clear();
     void tick();
     int get_next_tick();
